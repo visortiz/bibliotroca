@@ -28,7 +28,7 @@ class Inicial extends CI_Controller {
 
 		}
 
-		add_js(array('jquery.cycle.min.js','jquery.cycle.carousel.min.js'));
+		add_js(array('jquery.cycle.min.js','jquery.cycle.carousel.min.js','inicial.js'));
 
 		$this->load->model('inicial_model');
 		$data['books'] = $this->inicial_model->listar();

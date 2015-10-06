@@ -499,4 +499,4 @@ $config['proxy_ips'] = '';
 
 //Carregamento de arquivos css e js default
 $config['header_css'] = array('main.css');
-$config['header_js']  = array('jquery.js','main.js'); //,'main.js'
+$config['header_js']  = array('jquery.js');

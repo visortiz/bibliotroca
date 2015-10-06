@@ -15,8 +15,7 @@ class Estante extends CI_Controller {
 			$data['id'] = $session_data['id'];
 
 			add_css('jquery.modal.css');
-			add_js('jquery.modal.js');
-			add_js('estante.js');
+			add_js(array('jquery.modal.js','estante_desejos.js'));
 
 			$data['title'] = "Minha Estante";
 
@@ -24,7 +23,7 @@ class Estante extends CI_Controller {
 			$data['books'] = $this->estante_model->listar($data['id']);
 
 			$this->load->view('master/header', $data);
-			$this->load->view('estante');		
+			$this->load->view('estante');
 			$this->load->view('master/footer');
 		} else {
 			redirect('inicial', 'refresh');
@@ -63,9 +62,9 @@ class Estante extends CI_Controller {
 
 		//Salva nome do arquivo no banco
 		$data['foto'] = $rand;
- 
+
 		$this->load->model('estante_model');
- 
+
 		if ($this->estante_model->inserir($data)) {
 			redirect('estante');
 		} else {
@@ -82,7 +81,7 @@ class Estante extends CI_Controller {
 		$data['editora'] = $this->input->post('editora');
 		$data['ano_pub'] = $this->input->post('ano_pub');
 		$data['descricao'] = $this->input->post('descricao');
-		
+
 		// if($data['foto'] == $picture) {
 		// 	$data['foto'] = $picture;
 		// } else {
@@ -102,7 +101,7 @@ class Estante extends CI_Controller {
 
 		/* Carrega o modelo */
 		$this->load->model('estante_model');
- 
+
 		/* Chama a função inserir do modelo */
 		if ($this->estante_model->editar($id, $data)) {
 			redirect('estante');

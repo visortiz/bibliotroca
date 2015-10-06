@@ -27,13 +27,13 @@ class Solicitacoes extends CI_Controller {
 			$data['creditos'] = $session_data['creditos'];
 
 			add_css('jquery.modal.css');
-			add_js('jquery.modal.js');
+			add_js(array('jquery.modal.js','solicitacoes.js'));
 			$data['title'] = "Solicitações";
 
 			$this->load->model('solicitacao_model');
 			$data['sol_rec'] = $this->solicitacao_model->listar_rec($session_data['id']);
 			$data['sol_env'] = $this->solicitacao_model->listar_env($session_data['id']);
-			
+
 			$this->load->view('master/header', $data);
 			$this->load->view('solicitacoes');
 			$this->load->view('master/footer');

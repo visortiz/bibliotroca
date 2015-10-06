@@ -13,16 +13,15 @@ class Desejos extends CI_Controller {
 			$data['id'] = $session_data['id'];
 
 			add_css('jquery.modal.css');
-			add_js('jquery.modal.js');
-			add_js('estante.js');
+			add_js(array('jquery.modal.js','estante_desejos.js'));
 
 			$data['title'] = "Lista de Desejos";
 
 			$this->load->model('desejos_model');
 			$data['books'] = $this->desejos_model->listar($session_data['id']);
 
-			$this->load->view('master/header', $data);		
-			$this->load->view('desejos');		
+			$this->load->view('master/header', $data);
+			$this->load->view('desejos');
 			$this->load->view('master/footer');
 		} else {
 			redirect('inicial', 'refresh');
@@ -49,7 +48,7 @@ class Desejos extends CI_Controller {
 		$data['editora'] = $this->input->post('editora');
 		$data['ano_pub'] = $this->input->post('ano_pub');
 		$data['descricao'] = $this->input->post('descricao');
- 
+
  		//Gera nome unico + extensao para o arquivo
 		$ext = substr(strrchr($_FILES['foto']['name'],'.'),1);
 		$rand = md5(uniqid(rand(), true)) .'.'. $ext;
@@ -63,7 +62,7 @@ class Desejos extends CI_Controller {
 		$data['foto'] = $rand;
 
 		$this->load->model('desejos_model');
- 
+
 		if ($this->desejos_model->inserir($data)) {
 			redirect('desejos');
 		} else {
@@ -97,7 +96,7 @@ class Desejos extends CI_Controller {
 		$this->load->model('desejos_model');
 
 		$crud->callback_before_delete(array($id,'crud_delete_file'));
- 
+
 		/* Chama a função inserir do modelo */
 		if ($this->desejos_model->editar($id, $data)) {
 			redirect('desejos');

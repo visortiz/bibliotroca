@@ -29,7 +29,7 @@ class Busca extends CI_Controller {
 			$data['id'] = $session_data['id'];
 
 			add_css('jquery.modal.css');
-			add_js('jquery.modal.js');
+			add_js(array('jquery.modal.js','busca.js'));
 
 			$data['title'] = "Resultado da Busca";
 
@@ -40,7 +40,7 @@ class Busca extends CI_Controller {
 			$data['busca'] = $busca;
 
 			$this->load->view('master/header', $data);
-			$this->load->view('busca');		
+			$this->load->view('busca');
 			$this->load->view('master/footer');
 		} else {
 			add_css('jquery.modal.css');
@@ -55,7 +55,7 @@ class Busca extends CI_Controller {
 			$data['busca'] = $busca;
 
 			$this->load->view('master/header', $data);
-			$this->load->view('busca');		
+			$this->load->view('busca');
 			$this->load->view('master/footer');
 		}
 	}
@@ -94,7 +94,7 @@ class Busca extends CI_Controller {
 		$data['estado'] = $this->input->post('estado');
 
 		$this->load->model('busca_model');
-	 
+
 		if ($this->busca_model->inserir($data)) {
 			$arr = array('msg' => 'Solicitação realizada com sucesso!');
     		echo json_encode( $arr );

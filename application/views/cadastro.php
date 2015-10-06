@@ -1,4 +1,4 @@
-<div id="message">
+<div id="message" style="display: none;">
 	<p id="message_inner">
 		<?php echo img(array('src'=>'assets/imgs/success_ico.png','id'=>'success_ico'))?> Cadastro realizado com sucesso!
 	</p>
