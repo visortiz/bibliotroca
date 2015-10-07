@@ -15,7 +15,7 @@
 								     ."<p class='bookauthor'>Autor:</p>"
 								     ."<p>".$book->autor."</p>"
 								     ."<p class='status'>Status</p>"
-							     	 ."<p>Pendente</p>"
+							     	 ."<p>".$book->status_atual."</p>"
 							."</li>";
 				    }
 				?>

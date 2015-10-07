@@ -80,17 +80,22 @@ class Desejos extends CI_Controller {
 		$data['ano_pub'] = $this->input->post('ano_pub');
 		$data['descricao'] = $this->input->post('descricao');
 
-		//Gera nome unico + extensao para o arquivo
-		$ext = substr(strrchr($_FILES['foto_edited']['name'],'.'),1);
-		$rand = md5(uniqid(rand(), true)) .'.'. $ext;
+		if(!empty($_FILES['foto_edited']['name'])) {
+			//Gera nome unico + extensao para o arquivo
+			$ext = substr(strrchr($_FILES['foto_edited']['name'],'.'),1);
+			$rand = md5(uniqid(rand(), true)) .'.'. $ext;
 
-		//Salva arquivo na pasta
-		$sourcePath = $_FILES['foto_edited']['tmp_name'];
-		$targetPath = "assets/imgs/book_covers/".$rand;
-		move_uploaded_file($sourcePath,$targetPath);
+			//Salva arquivo na pasta e apaga foto antiga
+			$sourcePath = $_FILES['foto_edited']['tmp_name'];
+			$targetPath = "assets/imgs/book_covers/".$rand;
+			move_uploaded_file($sourcePath,$targetPath);
+			unlink("assets/imgs/book_covers/".$this->input->post('foto_old'));
 
-		//Salva nome do arquivo no banco
-		$data['foto'] = $rand;
+			//Salva nome do arquivo no banco
+			$data['foto'] = $rand;
+		} else {
+			$data['foto'] = $this->input->post('foto_old');
+		}
 
 		/* Carrega o modelo */
 		$this->load->model('desejos_model');

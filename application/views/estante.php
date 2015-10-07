@@ -80,7 +80,7 @@
     		<input type="hidden" name="id" />
 			<fieldset style="float: left;">
 				<?php echo img(array('src'=>'assets/imgs/book_covers/book_cover.jpg','id'=>'edit_cover_book_preview')) ?>
-
+				<input type="hidden" id="foto_old" name="foto_old" />
 				<input type="file" id="edit_cover_book_2" name="foto_edited" style="display: none;" />
 				<input type="button" id="edit_cover_book" value="Procurar..." onclick="document.getElementById('edit_cover_book_2').click();" style="width: 100px; display: block; visibility: hidden;" />
 			</fieldset>

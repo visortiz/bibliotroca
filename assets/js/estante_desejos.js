@@ -83,6 +83,7 @@ $(function() {
             	data = data[0];
             	_dados = {'id': data.id_livro, 'titulo': data.titulo, 'autor': data.autor, 'editora': data.editora, 'ano_pub': data.ano_pub, 'descricao': data.descricao, 'foto': 'assets/imgs/book_covers/' + data.foto};
             	populate(form_edit_book, _dados);
+				$('#foto_old').val(data.foto);
 				edit_book_modal.modal({fadeDuration: 300});
             },
             error: function(message) {

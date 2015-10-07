@@ -1,22 +1,22 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
- 
+
 class Solicitacao_model extends CI_Model {
- 
+
     function __construct() {
         parent::__construct();
     }
 
     function listar_rec($id) {
-		$query = $this->db->query("SELECT l.id_livro, l.titulo, l.autor, l.foto
-								   FROM livros AS l, solicitacao AS s
-								   WHERE s.id_usuario_o = '{$id}' AND s.id_livro = l.id_livro");
+		$query = $this->db->query("SELECT l.id_livro, l.titulo, l.autor, l.foto, h.status_atual
+								   FROM livros AS l, solicitacao AS s, historico AS h
+								   WHERE s.id_usuario_o = '{$id}' AND s.id_livro = l.id_livro AND h.id_status = s.id_status");
         return $query->result();
 	}
 
 	function listar_env($id) {
-		$query = $this->db->query("SELECT l.id_livro, l.titulo, l.autor, l.foto
-							   	   FROM livros AS l, solicitacao AS s
-							   	   WHERE s.id_usuario_s = '{$id}' AND s.id_livro = l.id_livro");
+		$query = $this->db->query("SELECT l.id_livro, l.titulo, l.autor, l.foto, h.status_atual
+							   	   FROM livros AS l, solicitacao AS s, historico AS h
+							   	   WHERE s.id_usuario_s = '{$id}' AND s.id_livro = l.id_livro AND h.id_status = s.id_status");
         return $query->result();
 	}
 

@@ -3,8 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Estante extends CI_Controller {
 
-	public $picture = "";
-
 	public function index()
 	{
 		if($this->session->userdata('logged_in')) {
@@ -36,8 +34,6 @@ class Estante extends CI_Controller {
 		$id = $_POST['id'];
 
 		$book = $this->estante_model->abrir($id);
-
-		$picture = get_object_vars($book[0])['foto'];
 
 		echo json_encode($book);
 	}
@@ -82,31 +78,31 @@ class Estante extends CI_Controller {
 		$data['ano_pub'] = $this->input->post('ano_pub');
 		$data['descricao'] = $this->input->post('descricao');
 
-		// if($data['foto'] == $picture) {
-		// 	$data['foto'] = $picture;
-		// } else {
-
+		if(!empty($_FILES['foto_edited']['name'])) {
 			//Gera nome unico + extensao para o arquivo
 			$ext = substr(strrchr($_FILES['foto_edited']['name'],'.'),1);
 			$rand = md5(uniqid(rand(), true)) .'.'. $ext;
 
-			//Salva arquivo na pasta
+			//Salva arquivo na pasta e apaga foto antiga
 			$sourcePath = $_FILES['foto_edited']['tmp_name'];
 			$targetPath = "assets/imgs/book_covers/".$rand;
 			move_uploaded_file($sourcePath,$targetPath);
+			unlink("assets/imgs/book_covers/".$this->input->post('foto_old'));
 
 			//Salva nome do arquivo no banco
 			$data['foto'] = $rand;
-		// }
+		} else {
+			$data['foto'] = $this->input->post('foto_old');
+		}
 
 		/* Carrega o modelo */
 		$this->load->model('estante_model');
 
 		/* Chama a função inserir do modelo */
 		if ($this->estante_model->editar($id, $data)) {
-			redirect('estante');
+			log_message('success_message', 'Livo editado com sucesso');
 		} else {
-			log_message('error', 'Erro ao inserir o livro.');
+			log_message('error', 'Erro ao editar livro.');
 		}
 	}
 

@@ -33,7 +33,7 @@
 			</div>
 
 			<?php echo img(array('src'=>'assets/imgs/add_book.png','id'=>'add_book')) ?>
-			
+
 			<?php echo form_open_multipart('desejos/inserir', 'id="cadastro_livros"'); ?>
 				<input type="hidden" id="data-view" value="2" />
 				<input type="hidden" id="idu" name="idu" value=<?php echo "\"" . $id . "\"" ?> />
@@ -41,7 +41,7 @@
 					<?php echo img(array('src'=>'assets/imgs/book_covers/book_cover.jpg','id'=>'cover_book_preview')) ?>
 					<input type='file' id="cover_book" name="foto" />
 				</fieldset>
-				
+
 				<fieldset>
 					<label>Título:</label>
 					<input type="text" class="textField" name="titulo" id="titluo" style="width: 265px;" />
@@ -81,11 +81,11 @@
     		<input type="hidden" name="id" />
 			<fieldset style="float: left;">
 				<?php echo img(array('src'=>'assets/imgs/book_covers/book_cover.jpg','id'=>'edit_cover_book_preview')) ?>
-				
+				<input type="hidden" id="foto_old" name="foto_old" />
 				<input type="file" id="edit_cover_book_2" name="foto_edited" style="display: none;" />
 				<input type="button" id="edit_cover_book" value="Procurar..." onclick="document.getElementById('edit_cover_book_2').click();" style="width: 100px; display: block; visibility: hidden;" />
 			</fieldset>
-			
+
 			<fieldset style="margin-top: 5px;">
 				<label>Título:</label>
 				<input type="text" class="textField" name="titulo" style="width: 265px;" disabled />
