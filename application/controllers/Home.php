@@ -26,6 +26,11 @@ class Home extends CI_Controller {
 			$data['nome'] = $session_data['nome'];
 			$data['creditos'] = $session_data['creditos'];
 
+			$this->load->model('home_model');
+			$data['livros_desejados'] = $this->home_model->listar_desejados($data);
+			$data['livros_cadastrados'] = $this->home_model->listar_cadastrados($data);
+			$data['livros_trocados'] = $this->home_model->listar_trocados($data);
+
 			$this->load->view('master/header', $data);
 			$this->load->view('home');
 			$this->load->view('master/footer');
