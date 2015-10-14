@@ -14,7 +14,7 @@ $(function(){
 
     //////////////////////////////////////
 
-    //2: Solicitação Recebida; 3: Solicitação Enviada
+    //1: Solicitação Recebida; 2: Solicitação Enviada
     books.click(function(){
 		var type = parseInt($(this).parent().attr('data-type'));
 		var id = $(this).parent().attr('id');
@@ -33,8 +33,8 @@ $(function(){
                     var votos = ranking[0];
                     var reputacao = ranking[1];
 
+                    $('#sol_rec').val(data.id_solicitacao);
                     imgs_modais.attr('src', 'assets/imgs/book_covers/' + data.foto);
-
                     $(v_sol_act_0).html('<li>Nome:<p>'+data.nome+'</p></li><li>CEP:<p>'+data.cep+'</p></li><li>Endereço:<p>'+data.endereco+', '+data.numero+'</p></li><li>Cidade:<p>'+data.cidade+' - '+data.estado+'</p></li>');
                     $(v_sol_act_2).html('<li>Título:<p>'+data.titulo+'</p></li><li>Autor:<p>'+data.autor+'</p></li>');
 		        	$(v_sol_1).html('<li>Título:<p>'+data.titulo+'</p></li><li>Autor:<p>'+data.autor+'</p></li><li>Editora:<p>'+data.editora+'</p></li><li>Ano de Publicação:<p>'+data.ano_pub+'</p></li><li>Descrição:<p>'+data.descricao+'</p></li>');
@@ -62,11 +62,10 @@ $(function(){
                     var votos = ranking[0];
                     var reputacao = ranking[1];
 
+                    $('#sol_env').val(data.id_solicitacao);
                     $(v_sol_env_img).attr('src', 'assets/imgs/book_covers/' + data.foto);
 		            $(v_sol_env_1).html('<li>Título:<p>'+data.titulo+'</p></li><li>Autor:<p>'+data.autor+'</p></li><li>Editora:<p>'+data.editora+'</p></li><li>Ano de Publicação:<p>'+data.ano_pub+'</p></li><li>Descrição:<p>'+data.descricao+'</p></li>');
 		            $(v_sol_env_2).html('<li>Dono deste livro:<p>'+data.nome+'</p></li><li>Localidade:<p>'+data.cidade+'</p></li><li>Trocas Efetuadas:<p>'+data.trocas_realizadas+'</p></li><li>Reputação:<p>'+reputacao+'% ('+votos+' votos)</p></li>');
-		            //$('#idl').val(data.id_livro);
-		            //$('#iduo').val(data.id_usuario);
 
 					$('#solicitacao_enviada').modal({fadeDuration: 300});
 		        },
@@ -77,14 +76,55 @@ $(function(){
 		}
 	});
 
+    //TODO Refector deste bloco
     $('#aceitar_sol').click(function(){
-		//FUNÇÃO DE ACEITA SOLICITAÇÃO
-		$('#solicitacao_aceita').modal({fadeDuration: 300});
+        $.ajax({
+            assyn: false,
+            type: 'POST',
+            url: 'solicitacoes/aceitar_solicitacao',
+            dataType: 'json',
+            data: 'ids=' + $("#sol_rec").val(),
+            success: function(data){
+                $('#solicitacao_aceita').modal({fadeDuration: 300});
+            },
+            error: function(message) {
+                //Catch Error
+            }
+        });
 	});
 
+    //TODO Refector deste bloco
 	$('#recusar_sol').click(function(){
-		//FUNÇÃO DE RECUSA SOLICITAÇÃO
-		$.modal.close();
+        $.ajax({
+            assyn: false,
+            type: 'POST',
+            url: 'solicitacoes/recusar_solicitacao',
+            dataType: 'json',
+            data: 'ids=' + $("#sol_rec").val(),
+            success: function(data){
+                $.modal.close();
+            },
+            error: function(message) {
+                //Catch Error
+            }
+        });
+	});
+
+    //TODO Refector deste bloco
+    $('.cancela_sol').click(function(){
+        $.ajax({
+            assyn: false,
+            type: 'POST',
+            url: 'solicitacoes/cancela_solicitacao',
+            dataType: 'json',
+            data: 'ids=' + $("#sol_env").val(),
+            success: function(data){
+                $.modal.close();
+            },
+            error: function(message) {
+                //Catch Error
+            }
+        });
 	});
 
     //AÇÃO PARA FECHAR MODAIS USANDO CLASSE '.fechar_modal'

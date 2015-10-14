@@ -36,7 +36,7 @@
 							     ."<p class='bookauthor'>Autor:</p>"
 							     ."<p>".$book->autor."</p>"
 							     ."<p class='status'>Status</p>"
-							     ."<p>Pendente</p>"
+							     ."<p>".$book->status_atual."</p>"
 							  ."</li>";
 					}
 				?>
@@ -51,6 +51,7 @@
     	</div>
 		<ul id="sol_1"></ul>
 		<ul id="sol_2"></ul>
+		<input type="hidden" id="sol_rec" />
 		<div class="modal_concluir">
 			<button id="aceitar_sol">Aceitar</button>
 			<button id="recusar_sol">Recusar</button>
@@ -80,8 +81,9 @@
     	</div>
 		<ul id="sol_env_1"></ul>
 		<ul id="sol_env_2"></ul>
+		<input type="hidden" id="sol_env" />
 		<div class="modal_concluir">
-			<button class="fechar_modal">Cancelar Solicitação</button>
+			<button class="cancela_sol">Cancelar Solicitação</button>
 			<button class="fechar_modal">Fechar</button>
 		</div>
   	</div>

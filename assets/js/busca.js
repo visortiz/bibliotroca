@@ -87,11 +87,11 @@ $(function() {
 	});
 
 	$('#finaliza_sol').click(function(){
-		var idl = $(idl).val();
-		var iduo = $(iduo).val();
+		var id_l = $(idl).val();
+		var id_uo = $(iduo).val();
 		var idus = $('#idus').val();
 		var end = $('#form_endereco').serialize();
-		var data = 'idl=' + idl + '&iduo=' + iduo + '&idus=' + idus + '&' + end;
+		var data = 'idl=' + id_l + '&iduo=' + id_uo + '&idus=' + idus + '&' + end;
 		$.ajax({
 		    assyn: false,
             type: 'POST',

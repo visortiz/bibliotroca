@@ -36,7 +36,7 @@ class Busca extends CI_Controller {
 			$busca = $this->input->post('search');
 
 			$this->load->model('busca_model');
-			$data['books'] = $this->busca_model->listar($busca, $session_data['id']);
+			$data['books'] = $this->busca_model->listar_logged($busca, $session_data['id']);
 			$data['busca'] = $busca;
 
 			$this->load->view('master/header', $data);
@@ -51,7 +51,7 @@ class Busca extends CI_Controller {
 			$busca = $this->input->post('search');
 
 			$this->load->model('busca_model');
-			$data['books'] = $this->busca_model->listar($busca);
+			$data['books'] = $this->busca_model->listar_unlogged($busca);
 			$data['busca'] = $busca;
 
 			$this->load->view('master/header', $data);
@@ -84,7 +84,7 @@ class Busca extends CI_Controller {
 		$data['id_livro'] = $this->input->post('idl');
 		$data['id_usuario_o'] = $this->input->post('iduo');
 		$data['id_usuario_s'] = $this->input->post('idus');
-		$data['id_status'] = "1";
+
 		$data['numero_solicitacao'] = rand(1,1000000);;
 		$data['cep_entrega'] = $this->input->post('cep');
 		$data['endereco_entrega'] = $this->input->post('endereco');
@@ -94,6 +94,11 @@ class Busca extends CI_Controller {
 		$data['estado'] = $this->input->post('estado');
 
 		$this->load->model('busca_model');
+
+		$status_data['status_atual'] = 'Pendente';
+		$status_id = $this->busca_model->create_status($status_data);
+
+		$data['id_status'] = $status_id;
 
 		if ($this->busca_model->inserir($data)) {
 			$arr = array('msg' => 'Solicitação realizada com sucesso!');

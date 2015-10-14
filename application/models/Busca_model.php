@@ -1,11 +1,11 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
- 
+
 class Busca_model extends CI_Model {
- 
+
     function __construct() {
         parent::__construct();
     }
- 
+
     // function inserir($data) {
     //     return $this->db->insert('livros', $data);
     // }
@@ -16,9 +16,16 @@ class Busca_model extends CI_Model {
                                    WHERE l.id_usuario = u.id_usuario AND l.id_livro = '{$id}'");
         return $query->result();
     }
- 
-	function listar($busca, $id_usuario) {
-		$query = $this->db->query("SELECT id_livro, titulo, autor, foto FROM livros WHERE CONCAT(titulo, autor, editora) LIKE '%$busca%' AND id_usuario != '{$id_usuario}'");
+
+	function listar_logged($busca, $id_usuario) {
+	    $query = $this->db->query("SELECT id_livro, titulo, autor, foto
+                                   FROM livros
+                                   WHERE CONCAT(titulo, autor, editora) LIKE '%$busca%' AND id_usuario != '{$id_usuario}'");
+        return $query->result();
+	}
+
+    function listar_unlogged($busca) {
+        $query = $this->db->query("SELECT id_livro, titulo, autor, foto FROM livros WHERE CONCAT(titulo, autor, editora) LIKE '%$busca%'");
         return $query->result();
 	}
 
@@ -27,8 +34,14 @@ class Busca_model extends CI_Model {
         return $query->result();
     }
 
+    function create_status($data) {
+        $this->db->insert('historico', $data);
+        return $this->db->insert_id();
+    }
+
     function inserir($data) {
         return $this->db->insert('solicitacao', $data);
+        //TODO Passar id da solicitação para a tabela de historico
     }
 
 }

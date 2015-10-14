@@ -60,4 +60,46 @@ class Solicitacoes extends CI_Controller {
 		echo json_encode($book);
 	}
 
+	function aceitar_solicitacao() {
+		$id = $_POST['ids'];
+		$status_data['status_atual'] = 'Em trânsito';
+
+		$this->load->model('solicitacao_model');
+
+		if ($this->solicitacao_model->aceitar_solicitacao($id, $status_data)) {
+			$result["success_message"] = "Solicitação aceita com sucesso";
+		} else {
+			$result["error_message"] = "Erro ao realizar operação.";
+		}
+		echo (json_encode($result));
+	}
+
+	function recusar_solicitacao() {
+		$id = $_POST['ids'];
+		$status_data['status_atual'] = 'Recusado';
+
+		$this->load->model('solicitacao_model');
+
+		if ($this->solicitacao_model->aceitar_solicitacao($id, $status_data)) {
+			$result["success_message"] = "Solicitação recusada";
+		} else {
+			$result["error_message"] = "Erro ao realizar operação.";
+		}
+		echo (json_encode($result));
+	}
+
+	function cancela_solicitacao() {
+		$id = $_POST['ids'];
+		$status_data['status_atual'] = 'Cancelado';
+
+		$this->load->model('solicitacao_model');
+
+		if ($this->solicitacao_model->cancela_solicitacao($id, $status_data)) {
+			$result["success_message"] = "Solicitação cancelada";
+		} else {
+			$result["error_message"] = "Erro ao realizar operação.";
+		}
+		echo (json_encode($result));
+	}
+
 }

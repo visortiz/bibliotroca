@@ -9,9 +9,11 @@
 
 					foreach($books as $book) {
 				        echo "<li id=\"".$book->id_livro."\" data-type='2' data-view='1'>"
-									 .img(array('src'=>'assets/imgs/book_covers/' . $book->foto))
-									 ."<p class='booktag'>SOLICITAR</p>"
-								     ."<p class='booktitle'>Título:</p>"
+									 .img(array('src'=>'assets/imgs/book_covers/' . $book->foto));
+									 if(isset($id)) {
+									 	echo "<p class='booktag'>SOLICITAR</p>";
+									 }
+								     echo "<p class='booktitle'>Título:</p>"
 								     ."<p>".$book->titulo."</p><br/>"
 								     ."<p class='bookauthor'>Autor:</p>"
 								     ."<p>".$book->autor."</p>"
@@ -22,6 +24,8 @@
 		</div>
 
 	</div>
+
+	<? if (isset($id)): ?>
 
 	<div id="solicita" style="display:none;">
     	<div id="sol_0">
@@ -41,8 +45,8 @@
 			<li>Reputação:<p>100% (6 votos)</p></li>
 		</ul>
 		<div class="modal_concluir">
-			<input type="hidden" id="idl" />
-			<input type="hidden" id="iduo" />
+			<input type="hidden" id="idl" value="" />
+			<input type="hidden" id="iduo" value="" />
 			<input type="hidden" id="idus" value="<?php echo $id ?>" />
 			<button id="solicita_livro">Solicitar Livro</button>
 			<button class="fechar_modal">Fechar</button>
@@ -83,7 +87,7 @@
 
   		<div id="conf_end_1">
   			<?php echo img(array('src'=>'assets/imgs/book_covers/book_cover.jpg','id'=>'cover_book_preview')) ?>
-			
+
 			<p class="title">Anunciante:</p>
 			<p class="anunciante"></p>
 			<p class="title">Título:</p>
@@ -110,5 +114,7 @@
 			<button class="fechar_modal">Concluir</button>
 		</div>
   	</div>
-  	
+
+	<? endif; ?>
+
 </div>
