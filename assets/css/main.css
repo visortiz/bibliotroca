@@ -249,11 +249,12 @@ textarea {
 /*PÁGINA CADASTRO*/
 .cadastro_container {
 	background-color: #005875;
-	padding: 25px;
+	padding: 40px 25px;
+	margin-bottom: 55px;
 }
 
 #form_cadastro {
-	float: left;
+
 }
 
 #form_cadastro fieldset {
@@ -268,12 +269,22 @@ textarea {
 }
 
 #cadastro_img {
-	float: right;
-	margin-top: 50px;
+	position: absolute;
+	top: 380px;
+	margin-left: 600px;
 }
 
 #enviar_cadastro {
 	margin: 50px 20px 0 165px;
+}
+
+span.help-block.form-error {
+    color: #fff;
+    font-size: 12px;
+	color: red;
+	background-color: #fff;
+    border-radius: 0 10px 10px 0;
+    padding: 5px;
 }
 
 /*MÓDULO BOOKSHELF*/

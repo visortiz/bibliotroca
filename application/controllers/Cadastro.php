@@ -20,29 +20,34 @@ class Cadastro extends CI_Controller {
 	 */
 	public function index()
 	{
+		add_js(array('jquery.form.validator.js','cadastro.js'));
+
 		$data['title'] = "Cadastro";
+
+		$data['success_message'] = $this->session->flashdata('success_message');
+
 		$this->load->view('master/header', $data);
-		$this->load->view('cadastro');		
+		$this->load->view('cadastro');
 		$this->load->view('master/footer');
 	}
 
 	function inserir() {
- 
+
 		/* Carrega a biblioteca do CodeIgniter responsável pela validação dos formulários */
 		// $this->load->library('form_validation');
-	 
+
 		/* Define as tags onde a mensagem de erro será exibida na página */
 		// $this->form_validation->set_error_delimiters('<div id="message">', '</div>');
-	 
+
 		/* Define as regras para validação */
 		// $this->form_validation->set_rules('nome', 'Nome', 'required|max_length[40]');
 		// $this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|max_length[100]');
-	 
+
 		/* Executa a validação e caso houver erro... */
 		// if ($this->form_validation->run() === FALSE) {
 			/* Chama a função index do controlador */
 			// $this->index();
-		/* Senão, caso sucesso na validação... */	
+		/* Senão, caso sucesso na validação... */
 		// } else {
 			/* Recebe os dados do formulário (visão) */
 			$date = explode('/', $this->input->post('dt_nasc'));
@@ -58,12 +63,13 @@ class Cadastro extends CI_Controller {
 			$data['cidade'] = $this->input->post('cidade');
 			$data['estado'] = $this->input->post('estado');
 			$data['dt_nasc'] = $dt_nasc;
-	 
+
 	 		/* Carrega o modelo */
 			$this->load->model('cadastro_model');
-	 
+
 			/* Chama a função inserir do modelo */
 			if ($this->cadastro_model->inserir($data)) {
+				$this->session->set_flashdata('success_message', 'Cadastro realizado com sucesso!');
 				redirect('cadastro');
 			} else {
 				log_message('error', 'Erro ao inserir a pessoa.');
@@ -71,5 +77,5 @@ class Cadastro extends CI_Controller {
 		// }
 	}
 
-	
+
 }
