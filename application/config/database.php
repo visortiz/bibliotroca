@@ -64,7 +64,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'mysql.hostinger.com.br',
 	'username' => 'u253818243_admin',
 	'password' => 'aml0122',
 	'database' => 'u253818243_site',
