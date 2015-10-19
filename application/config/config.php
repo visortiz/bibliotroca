@@ -17,7 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/bibliotroca';
+// $config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/bibliotroca';
+$config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/';
 
 /*
 |--------------------------------------------------------------------------

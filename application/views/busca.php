@@ -8,16 +8,16 @@
 				<?php
 
 					foreach($books as $book) {
-				        echo "<li id=\"".$book->id_livro."\" data-type='2' data-view='1'>"
+				        echo '<li id=".$book->id_livro." data-type="2" data-view="1">'
 									 .img(array('src'=>'assets/imgs/book_covers/' . $book->foto));
 									 if(isset($id)) {
-									 	echo "<p class='booktag'>SOLICITAR</p>";
+									 	echo '<p class="booktag">SOLICITAR</p>';
 									 }
-								     echo "<p class='booktitle'>Título:</p>"
-								     ."<p>".$book->titulo."</p><br/>"
-								     ."<p class='bookauthor'>Autor:</p>"
-								     ."<p>".$book->autor."</p>"
-							."</li>";
+								     echo '<p class="booktitle">Título:</p>'
+								     .'<p>'.$book->titulo.'</p><br/>'
+								     .'<p class="bookauthor">Autor:</p>'
+								     .'<p>'.$book->autor.'</p>'
+							.'</li>';
 					}
 				?>
 			</ul>

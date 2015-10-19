@@ -64,10 +64,13 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
-	'username' => 'root',
+	// 'hostname' => '127.0.0.1',
+	'hostname' => 'mysql.hostinger.com.br',
+	// 'username' => 'root',
+	'username' => 'u253818243_admin',
 	'password' => '',
-	'database' => 'bibliotroca',
+	// 'database' => 'bibliotroca',
+	'database' => 'u253818243_site',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

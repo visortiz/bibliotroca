@@ -1,7 +1,7 @@
 <div id="body" class="inicial_container">
 	<div id="body_inner">
 		<?php echo img(array('src'=>'assets/imgs/inicial_img.png','id'=>'inicial_img'))?>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		<p>Livro novo é aquele que você nunca leu.<br/><br/>Passe um livro adiante e adquira outro, de sua escolha, de qualquer pessoa.<br/><br/>Sem dinheiro envolvido, apenas livros!</p>
 		<div class="estante"><span>Livros mais recentes:</span></div>
 		<div class="slideshow">
 			<?php
